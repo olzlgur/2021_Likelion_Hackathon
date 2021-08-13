@@ -30,6 +30,7 @@ def siteMain(request):
 def detail(request, id):
     blog = get_object_or_404(Blog, pk = id)
     person = get_object_or_404(get_user_model(), username=request.user)
+    people = get_user_model().objects.all()
     comments = Comment.objects.filter(post = id)
     if request.method == "POST":
             comment = Comment()
@@ -43,8 +44,8 @@ def detail(request, id):
     else:
         message="좋아요"
 
-    return render(request, 'blog/detail.html', {'blog' :blog, 'comments' : comments, 'person':person, "message" : message})
-
+    return render(request, 'blog/detail.html', {'blog' :blog, 'comments' : comments, 'person':person, "message" : message,'people':people})
+    
 def profile(request, username):
     person = get_object_or_404(get_user_model(), username=username)
     return render(request, 'blog/profile.html', {'person':person}) 

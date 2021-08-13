@@ -35,7 +35,7 @@ def detail(request, id):
     else:
         message="좋아요"
 
-    return render(request, 'blog/detail.html', {'blog' :blog, 'comments' : comments, 'person':person, "message" : message})
+    return render(request, 'blog/detail.html', {'blog' :blog, 'person':person, "message" : message})
 
 def profile(request, username):
     person = get_object_or_404(get_user_model(), username=username)

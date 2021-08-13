@@ -26,7 +26,7 @@ def signup(request):
 def siteMain(request):
     return render(request, 'siteMain.html')
 
-def detail(request, id, username):
+def detail(request, id):
     blog = get_object_or_404(Blog, pk = id)
     person = get_object_or_404(get_user_model(), username=request.user)
     comments = Comment.objects.filter(post = id)
@@ -36,7 +36,7 @@ def detail(request, id, username):
             comment.body = request.POST['body']
             comment.date = timezone.now()
             comment.save()
-            message2 = username
+            message2 = request.user.id
     
     if blog.likes.filter(id=request.user.id):
         message="취소"

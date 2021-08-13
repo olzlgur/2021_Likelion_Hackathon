@@ -18,8 +18,9 @@ def loading(request):
 def main(request):
     blogs = Blog.objects.all()
     person = get_object_or_404(get_user_model(), username=request.user)
-    return render(request, 'blog/main.html', {'blogs':blogs, 'person':person})
-
+    people = get_user_model().objects.all()
+    return render(request, 'blog/main.html', {'blogs':blogs, 'person':person, 'people':people})
+    
 def signup(request):
     return render(request, 'blog/signup.html')
 

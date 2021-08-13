@@ -29,14 +29,6 @@ def siteMain(request):
 def detail(request, id):
     blog = get_object_or_404(Blog, pk = id)
     person = get_object_or_404(get_user_model(), username=request.user)
-    comments = Comment.objects.filter(post = id)
-    if request.method == "POST":
-            comment = Comment()
-            comment.writer=  request.user
-            comment.post = blog
-            comment.body = request.POST['body']
-            comment.date = timezone.now()
-            comment.save()
     
     if blog.likes.filter(id=request.user.id):
         message="취소"
@@ -155,3 +147,15 @@ def post_like(request, id):
 
     return redirect('/detail/'+str(id))
 
+def comment(request,blog_id):
+    if request.method == "POST" :
+        comment = Comment()
+        comment.body = request.POST['body']
+        comment.pub_date = timezone.datetime.now()
+        comment.writer = request.user
+        comment.post = get_object_or_404(Blog, pk=blog_id)
+        comment.save()
+
+        return redirect('/detail/'+str(blog_id))
+    else:
+        return redirect('/blog/'+str(blog_id))

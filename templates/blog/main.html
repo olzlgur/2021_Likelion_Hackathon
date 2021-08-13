@@ -17,20 +17,19 @@
     {% for blog in blogs %}    
         <div class="card">
             <div class="card-info">
-              {%if blog.author == user %}
+               {%if blog.author == user %}
                     {%if person.profile.profile_photo %}
-                     <a href="{% url 'profile' blog.author %}"><img class="Id_Profile" style="border-radius:50px;" src={{person.profile.profile_photo.url}}></a>
+                     <img class="Id_Profile" style="border-radius:50px;" src={{person.profile.profile_photo.url}}>
                     {%else%}
-                     <a href="{% url 'profile' blog.author %}"><img class="Id_Profile" src="https://image.flaticon.com/icons/png/512/149/149071.png"></a>
+                     <img class="Id_Profile" src="https://image.flaticon.com/icons/png/512/149/149071.png">
                     {%endif%}
                 {%else %}
                     {% for peo in people %}
                         {%if blog.author == peo%}
                             {%if peo.profile.profile_photo %}
-                                <a href="{% url 'profile' blog.author %}"><img class="Id_Profile" style="border-radius:50px;" src={{peo.profile.profile_photo.url}}></a>
-                            {%else%}
-                                <a href="{% url 'profile' blog.author %}"><img class="Id_Profile" src="https://image.flaticon.com/icons/png/512/149/149071.png"></a>
+                                <img class="Id_Profile" style="border-radius:50px;" src={{peo.profile.profile_photo.url}}>
                             {%endif%}
+                                <img class="Id_Profile" src="https://image.flaticon.com/icons/png/512/149/149071.png">
                         {%else%}
                         {%endif%}
                     {% endfor %}

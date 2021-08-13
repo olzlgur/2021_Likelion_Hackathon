@@ -17,7 +17,7 @@
     {% for blog in blogs %}    
         <div class="card">
             <div class="card-info">
-                {%if blog.author == user %}
+               {%if blog.author == user %}
                     {%if person.profile.profile_photo %}
                      <img class="Id_Profile" style="border-radius:50px;" src={{person.profile.profile_photo.url}}>
                     {%else%}
@@ -29,6 +29,7 @@
                             {%if peo.profile.profile_photo %}
                                 <img class="Id_Profile" style="border-radius:50px;" src={{peo.profile.profile_photo.url}}>
                             {%endif%}
+                                <img class="Id_Profile" src="https://image.flaticon.com/icons/png/512/149/149071.png">
                         {%else%}
                         {%endif%}
                     {% endfor %}

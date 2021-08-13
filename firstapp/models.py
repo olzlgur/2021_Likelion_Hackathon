@@ -28,10 +28,9 @@ class Profile(models.Model):
     profile_photo = models.ImageField(upload_to='profile/%Y%m%d',blank=True, null=True)          # 값을 채워넣지 않아도 되는 속성.
 
 class Comment(models.Model):
+    post = models.ForeignKey(Blog, on_delete=models.CASCADE, null=True)
     body = models.TextField(max_length=200)
     date = models.DateTimeField(default=timezone.now)
-    writer = models.ForeignKey(User, on_delete=models.CASCADE ,null=True)
-    post = models.ForeignKey(Blog, on_delete=models.CASCADE, null=True)
 
 class Like(models.Model):
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE)

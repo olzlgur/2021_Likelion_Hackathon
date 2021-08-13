@@ -82,11 +82,11 @@ def main_map(request):
     blogss = Blog.objects.all()
     #personss = Profile.objects.all()
      
-    personsss = get_object_or_404(get_user_model(), username=request.user)
+    person = get_object_or_404(get_user_model(), username=request.user)
     context = {
         'blogss': blogss,
     #    'personss': personss,
-        'personsss': personsss
+        'person': person
     }
     return render(request, 'blog/map.html', context)
 

@@ -44,43 +44,42 @@
         
         <div class="body4">
             <div class="hashtag-wrapper">
+                <div 
                 <btn class="btn_hashtag">해시태그</btn>
-                <textarea name="hashtag" rows="5" cols="50">해시태그를 입력해주세요</textarea>
+                <textarea name="hashtag" rows="5" cols="50"></textarea>
             </div>
         </div>
         <div class="body5">
             <div class="desc-wrapper">
                 <btn class="btn_desc" style="height: 35px; margin-top: 60px;">내용 입력</btn>
                 
-                <textarea name="body" rows="10" cols="50">내용을 입력해주세요</textarea>
+                <textarea name="body" rows="10" cols="50"></textarea>
                 
             </div>
         </div>
-        <div class="body6">
+        <div class="body6" style="display:none;">
             <div class="hashtag-wrapper">
                 <btn class="btn_desc" style="height: 35px; margin-top: 60px;">위도 입력</btn>
                 
-                <textarea name="latitude" rows="1" cols="50">위도(소수)를 입력해주세요</textarea>
+                <textarea name="latitude" id="latitude" rows="1" cols="50"></textarea>
                 
             </div>
         </div>    
-        <div class="body6">
+        <div class="body7" style="display:none;">
             <div class="hashtag-wrapper">
-                <btn class="btn_desc" style="height: 35px; margin-top: 60px;">경도 입력</btn>
+                <btn class="btn_desc" style="display:none; height: 35px; margin-top: 60px;">경도 입력</btn>
                 
-                <textarea name="longitude" rows="1" cols="50">경도(소수)를 입력해주세요</textarea>
+                <textarea name="longitude" id="longitude" rows="1" cols="50"></textarea>
                 
             </div>
         </div>    
         <!--<div id="latitude" name="latitude" style="display:none"></div>
-        <div id="longitude" name="longitude" style="display:none"></div>
+        <div id="longitude" name="longitude" style="display:none"></div>-->
         <div class="body6">
             <script type="text/javascript">
-                //form.latitude.value = 0.0;
-                //form.longitude.value = 0.0;
-                //document.getElementById("latitude").innerHTML = parseFloat(0.0);
-                //document.getElementById("longitude").innerHTML = parseFloat(0.0);
-                
+                //document.getElementById("latitude").innerHTML = 0.0;
+                //document.getElementById("longitude").innerHTML = 0.0;
+                const latID = document.getElementById("latitude").inner
 
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(function(position) {
@@ -89,15 +88,15 @@
                             lon = position.coords.longitude; // 경도
                         
                         //var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-                        document.getElementById("latitude").value = lat;
-                        document.getElementById("longitude").value = lon;
+                        document.getElementById("latitude").innerHTML = lat;
+                        document.getElementById("longitude").innerHTML = lon;
                     });
                 } else {
-                    document.getElementById('latitude').value = 0.0;
-                    document.getElementById('longitude').value = 0.0;
+                    document.getElementById('latitude').innerHTML = 0.0;
+                    document.getElementById('longitude').innerHTML = 0.0;
                 }
             </script>
-        <input type="hidden" name="latitude" id="latitude" value="">
+        <!--<input type="hidden" name="latitude" id="latitude" value="">
         <input type="hidden" name="longitude" id="longitude" value="">-->
         </div>
         <button type="submit" class ="submit"> submit</button>

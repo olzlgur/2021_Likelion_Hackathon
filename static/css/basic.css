@@ -74,8 +74,8 @@ p{
 
 .map{  
   position: absolute;
-  top: 475px;
-  left: 350px;
+  top: 128px;
+  left: 820px;
 }
 
 .Hash-tag{
@@ -91,13 +91,11 @@ p{
 }
 .Like{
   position: absolute;
-  top: 477px;
-  left: 530px;
+  top: 479px;
+  left: 350px;
 }
 .card2{
-  margin-left: 0px;
-  margin-top: 2%;
-  margin-bottom: 4cm;
+  margin-bottom:2cm;
   justify-content: center;
 }
 
@@ -201,6 +199,6 @@ input{
 }
 .card-writer{
   position: absolute;
-  top: 120px;
+  top: 123px;
   left: 350px;
 }

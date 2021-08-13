@@ -1,4 +1,5 @@
 {% extends 'blog/base.html' %}
+
 {%block content%}
 <body>
     <!--아래부터는 받아온 값들을 각각 id를 부여하여 저장한 것-->
@@ -42,6 +43,33 @@
             {{blog.body}},
         {%endfor%}
     </div>
+    <div id="photo" style="display:none"> <!--프로필사진 불러와서 저장-->
+        {%for person in personss%}
+            {{person.profile.profile_photo}},
+        {%endfor%}
+    </div>
+    <div id="photo_src" style="display:none"> <!--프사 url 저장-->
+        {%for person in personss%}
+            {% if person.profile.profile_photo %}
+                {{ person.profile.profile_photo.url }},
+            {% else %}
+                "https://image.flaticon.com/icons/png/512/149/149071.png",
+            {% endif %}
+        {%endfor%}
+    </div>
+    <div id="wth_png" style="display:none">
+        {% for blog in blogss %}
+            {% if blog.weather == "['rainy']" %}
+                "https://image.flaticon.com/icons/png/512/826/826957.png",
+            {% elif blog.weather == "['sunny']" %}
+                "https://image.flaticon.com/icons/png/512/869/869869.png",
+            {% elif blog.weather == "['wind']" %}
+                "https://image.flaticon.com/icons/png/512/4150/4150923.png",
+            {% else %} <!--elif blog.weather == "['cloudy']"-->
+                "https://image.flaticon.com/icons/png/512/1146/1146869.png",
+            {% endif %}
+        {% endfor %}
+    </div>
     <!--여기까지 값 저장-->
 
     <h2 style="text-align: center;">{{ blogss }}</h2>
@@ -59,11 +87,12 @@
         var list_lat = document.getElementById("lat").innerText.split(','); //getElementById('id')로 해당 id를 가지는 문자열을 가져오고 comma 기준으로 문자열 쪼개서 배열 형태로 저장함
         var list_lng = document.getElementById("lng").innerText.split(',');
         var list_tag = document.getElementById("tag").innerText.split(',');
-        var list_wth = document.getElementById("wth").innerText.split(',');
+        var list_wth = document.getElementById("wth_png").innerText.split(',');
         var list_img = document.getElementById("img").innerText.split(',');
         var list_ath = document.getElementById("ath").innerText.split(',');
         var list_crt = document.getElementById("crt").innerText.split(',');
         var list_bdy = document.getElementById("bdy").innerText.split(',');
+        var list_photo = document.getElementById("photo_src").innerText.split(',');
 
         var coordinates = new Array(); //좌표 정보 저장할 배열
 
@@ -83,10 +112,13 @@
             var iwContent = '<div style="width:200px;height:250px;">'
             + '<div>'
             + '<div style="float:left;">'
-            + '<img style="width:15px; height:15px; margin-left:5px;" src="https://image.flaticon.com/icons/png/512/149/149071.png">'
-            + '</div>'
-            + '<div style="width:175px;margin-left:5px;font-size:20px;float:right;font-family:Rancho,Arial; overflow:hidden;">'
+            + '<img style="width:15px; height:15px; margin-left:5px;" src=' + list_photo[idx] + '>'
+            + '</div>'  
+            + '<div style="width:135px;margin-left:5px;font-size:20px;float:left;font-family:Rancho,Arial; overflow:hidden;">'
             + list_ath[idx]
+            + '</div>'
+            + '<div style="float:left;">'
+            + '<img style="width:15px; height:15px; margin-right:20px;" src=' + list_wth[idx] + '>'
             + '</div>'
             + '</div>'
             + '<div style="width:190px;margin-left:5px;color:rgb(106, 159, 177);font-size:13px;font-family:돋움,Arial;text-align:right;">'

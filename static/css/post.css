@@ -134,3 +134,19 @@ input::placeholder{
 input:focus:-ms-input-placeholder, textarea:focus:-ms-input-placeholder {
      color:transparent; 
 }
+
+.submit{
+    width:60px;
+    height:30px;
+    background-color:rgba(124, 112, 247, 1);
+    color: aliceblue;
+    margin:15px;
+    font-family: 'Roboto';
+    font-size:15px;
+    text-align: center;
+    border-radius: 10px;
+    margin-left:51%;
+    margin-bottom:1%;
+    border:0;
+    outline: 0;
+}

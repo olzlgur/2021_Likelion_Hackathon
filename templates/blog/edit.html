@@ -7,25 +7,38 @@
         <div class="body">
             <div class="weather-wrapper">
                 <btn class="btn_weather">날씨 선택</btn>
+                <script type="text/javascript">
+                    function checkOnlyOne(element) {
+      
+                        const checkboxes 
+                            = document.getElementsByName("weather[]");
+                        
+                        checkboxes.forEach((cb) => {
+                          cb.checked = false;
+                        })
+                        
+                        element.checked = true;
+                      }
+                    </script>
                 {% if blog.weather == "['rainy']" %}
-                <input checked="checked" type="checkbox" name="weather[]" value="rainy" id="box1" class="box1"><label for="box1">비</label>
+                <input checked="checked" type="checkbox" name="weather[]" onclick='checkOnlyOne(this)' value="rainy" id="box1" class="box1"><label for="box1">비</label>
                 {% else %}
-                <input type="checkbox" name="weather[]" value="rainy" id="box1" class="box1"><label for="box1">비</label>
+                <input type="checkbox" name="weather[]" onclick='checkOnlyOne(this)' value="rainy" id="box1" class="box1"><label for="box1">비</label>
                 {% endif %}
                 {% if blog.weather == "['sunny']" %}
-                <input checked="checked" type="checkbox" name="weather[]" value="sunny" id="box2" class="box2"><label for="box2">맑음</label>
+                <input checked="checked" type="checkbox" name="weather[]" onclick='checkOnlyOne(this)' value="sunny" id="box2" class="box2"><label for="box2">맑음</label>
                 {% else %}
-                <input type="checkbox" name="weather[]" value="sunny" id="box2" class="box2"><label for="box2">맑음</label>
+                <input type="checkbox" name="weather[]" onclick='checkOnlyOne(this)' value="sunny" id="box2" class="box2"><label for="box2">맑음</label>
                 {% endif %}
                 {% if blog.weather == "['wind']" %}
-                <input checked="checked" type="checkbox" name="weather[]" value="wind" id="box3" class="box3"><label for="box3">선선함</label>
+                <input checked="checked" type="checkbox" name="weather[]" onclick='checkOnlyOne(this)' value="wind" id="box3" class="box3"><label for="box3">선선함</label>
                 {% else %}
-                <input type="checkbox" name="weather[]" value="wind" id="box3" class="box3"><label for="box3">선선함</label>
+                <input type="checkbox" name="weather[]" value="wind" onclick='checkOnlyOne(this)' id="box3" class="box3"><label for="box3">선선함</label>
                 {% endif %}
                 {% if blog.weather == "['cloudy']" %}
-                <input checked="checked" type="checkbox" name="weather[]" value="cloudy" id="box4" class="box4"><label for="box4">구름 조금</label>
+                <input checked="checked" type="checkbox" name="weather[]" value="cloudy" onclick='checkOnlyOne(this)' id="box4" class="box4"><label for="box4">구름 조금</label>
                 {% else %}
-                <input type="checkbox" name="weather[]" value="cloudy" id="box4" class="box4"><label for="box4">구름 조금</label>
+                <input type="checkbox" name="weather[]" value="cloudy" onclick='checkOnlyOne(this)' id="box4" class="box4"><label for="box4">구름 조금</label>
                 {% endif %}
 
                 
@@ -62,7 +75,7 @@
                 
             </div>
         </div>        
-        <button type="submit"> submit</button>
+        <button class="submit" type="submit"> submit</button>
     </form>
 
 </body>

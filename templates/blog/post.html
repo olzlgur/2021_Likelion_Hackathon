@@ -7,10 +7,23 @@
         <div class="body">
             <div class="weather-wrapper">
                 <btn class="btn_weather">날씨 선택</btn>
-                <input type="checkbox" name="weather[]" value="rainy" id="box1" class="box1"><label for="box1">비</label>
-                <input type="checkbox" name="weather[]" value="sunny" id="box2" class="box2"><label for="box2">맑음</label>
-                <input type="checkbox" name="weather[]" value="wind" id="box3" class="box3"><label for="box3">선선함</label>
-                <input type="checkbox" name="weather[]" value="cloudy" id="box4" class="box4"><label for="box4">구름 조금</label>
+                <script type="text/javascript">
+                function checkOnlyOne(element) {
+  
+                    const checkboxes 
+                        = document.getElementsByName("weather[]");
+                    
+                    checkboxes.forEach((cb) => {
+                      cb.checked = false;
+                    })
+                    
+                    element.checked = true;
+                  }
+                </script>
+                <input type="checkbox" name="weather[]" value="rainy" onclick='checkOnlyOne(this)' id="box1" class="box1"><label for="box1">비</label>
+                <input type="checkbox" name="weather[]" value="sunny" onclick='checkOnlyOne(this)' id="box2" class="box2"><label for="box2">맑음</label>
+                <input type="checkbox" name="weather[]" value="wind" onclick='checkOnlyOne(this)' id="box3" class="box3"><label for="box3">선선함</label>
+                <input type="checkbox" name="weather[]" value="cloudy" onclick='checkOnlyOne(this)' id="box4" class="box4"><label for="box4">구름 조금</label>
             </div>
         </div>
         <div class="body2">
@@ -43,8 +56,22 @@
                 <textarea name="body" rows="10" cols="50">내용을 입력해주세요</textarea>
                 
             </div>
-        </div>        
-        <button type="submit"> submit</button>
+        </div>  
+
+        <div class="body6">
+            <script>
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+        
+                        var lat = position.coords.latitude, // 위도
+                            lon = position.coords.longitude; // 경도
+                        
+                        var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+                    });
+                }
+            </script>
+        </div>
+        <button type="submit" class ="submit"> submit</button>
     </form>
 
 </body>

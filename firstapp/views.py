@@ -80,15 +80,17 @@ def credit(request):
 
 def main_map(request):
     blogss = Blog.objects.all()
-    person = get_object_or_404(get_user_model(), username=request.user)
+    personss = Profile.objects.all()
+    personsss = get_object_or_404(get_user_model(), username=request.user)
     context = {
         'blogss': blogss,
+        'personss': personss,
+        'personsss': personsss
     }
-    return render(request, 'blog/map.html', context, {'person':person})
+    return render(request, 'blog/map.html', context)
 
 def login(request):
     return render(request, 'blog/login.html')
-
 
 def new(request):
     return render(request, 'blog/new.html')
@@ -147,3 +149,4 @@ def post_like(request, id):
         blog.likes.add(user)
 
     return redirect('/detail/'+str(id))
+

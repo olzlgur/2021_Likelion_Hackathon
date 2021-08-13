@@ -38,9 +38,9 @@
 .btn2{
   width: 130px;
   height: 35px;
-  margin-right:0.8cm;
   border-radius: 10px;
   border-color:aliceblue;
+  margin-left:5%;
   box-shadow: 1px 0px 2px 1px rgb(124, 123, 123);
 }
 

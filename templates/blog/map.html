@@ -43,20 +43,26 @@
             {{blog.body}},
         {%endfor%}
     </div>
-    <div id="photo" style="display:none"> <!--프로필사진 불러와서 저장-->
-        {%for person in personss%}
-            {{person.profile.profile_photo}},
+    <!--
+    <div id="photo" style="display:none"> 프로필사진 불러와서 저장
+        {%for blog in blogss%}
+            {% if personsss.profile.profile_photo %}
+                {{ personsss.profile.profile_photo.url }},
+            {% else %}
+                "https://image.flaticon.com/icons/png/512/149/149071.png",
+            {% endif %}
         {%endfor%}
-    </div>
-    <div id="photo_src" style="display:none"> <!--프사 url 저장-->
-        {%for person in personss%}
+    </div>-->
+    <!--
+    <div id="photo_src" style="display:none"> 프사 url 저장
+        {%for person in personsss%}
             {% if person.profile.profile_photo %}
                 {{ person.profile.profile_photo.url }},
             {% else %}
                 "https://image.flaticon.com/icons/png/512/149/149071.png",
             {% endif %}
         {%endfor%}
-    </div>
+    </div> -->
     <div id="wth_png" style="display:none">
         {% for blog in blogss %}
             {% if blog.weather == "['rainy']" %}
@@ -72,19 +78,29 @@
     </div>
     <!--여기까지 값 저장-->
 
-    <h2 style="text-align: center;">{{ blogss }}</h2>
     <div id="map" style="width:70%;margin-left:15%; min-height:700px;"></div>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b50f777e80931e3ecceb48757ca6e4bf&libraries=services,clusterer,drawing"></script>
     <script>
         var container = document.getElementById('map'); //지도를 담을 영역의 reference
-        var options = {
-            center: new kakao.maps.LatLng(35.889733, 128.610047), //지도의 option을 설정 // 35.-,128.- 는 좌표 정보
-            level: 4
-        };
+        var lat = 35.889733, lon = 128.610047;
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) { // 현위치 받아옴
+                lat = position.coords.latitude, // 위도
+                lon = position.coords.longitude; // 경도          
+            });
+        } else { //GeoLocation 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용 설정
+            lat = 35.889733;
+            lon = 128.610047;
+        }
 
+        var options = {
+                center: new kakao.maps.LatLng(lat, lon),
+                level: 4
+            };
         var map = new kakao.maps.Map(container, options);
 
-        var list_lat = document.getElementById("lat").innerText.split(','); //getElementById('id')로 해당 id를 가지는 문자열을 가져오고 comma 기준으로 문자열 쪼개서 배열 형태로 저장함
+        //getElementById('id')로 해당 id를 가지는 문자열을 가져오고 comma 기준으로 문자열 쪼개서 배열 형태로 저장함
+        var list_lat = document.getElementById("lat").innerText.split(','); 
         var list_lng = document.getElementById("lng").innerText.split(',');
         var list_tag = document.getElementById("tag").innerText.split(',');
         var list_wth = document.getElementById("wth_png").innerText.split(',');
@@ -92,14 +108,14 @@
         var list_ath = document.getElementById("ath").innerText.split(',');
         var list_crt = document.getElementById("crt").innerText.split(',');
         var list_bdy = document.getElementById("bdy").innerText.split(',');
-        var list_photo = document.getElementById("photo_src").innerText.split(',');
+        //var list_photo = document.getElementById("photo").innerText.split(',');
 
         var coordinates = new Array(); //좌표 정보 저장할 배열
 
         for(var idx=0; idx<list_lat.length;idx++) {
-            var latitude = list_lat[idx];
-            var longitude = list_lng[idx];
-            coordinates.push(new kakao.maps.LatLng(latitude,longitude));
+            var latitudee = list_lat[idx];
+            var longitudee = list_lng[idx];
+            coordinates.push(new kakao.maps.LatLng(latitudee,longitudee));
         }
 
         for(var idx=0; idx<coordinates.length;idx++){
@@ -109,10 +125,12 @@
                 title: list_ath[idx]
             });
 
+            marker.setMap(map); //marker가 지도 위에 표시되도록 설정
+
             var iwContent = '<div style="width:200px;height:250px;">'
             + '<div>'
             + '<div style="float:left;">'
-            + '<img style="width:15px; height:15px; margin-left:5px;" src=' + list_photo[idx] + '>'
+            + '<img style="width:15px; height:15px; margin-left:5px;" src="https://image.flaticon.com/icons/png/512/149/149071.png">'
             + '</div>'  
             + '<div style="width:135px;margin-left:5px;font-size:20px;float:left;font-family:Rancho,Arial; overflow:hidden;">'
             + list_ath[idx]
@@ -134,9 +152,9 @@
             iwPosition = coordinates[idx], //인포윈도우 표시 위치
             iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼 표시
 
-
             var infoWindow = new kakao.maps.InfoWindow({
                 //content: list_bdy[idx]
+                position: iwPosition,
                 content: iwContent,
                 removable : iwRemoveable
             });
@@ -145,14 +163,13 @@
                 kakao.maps.event.addListener(marker, 'mouseover', function() {
                     infoWindow.open(map, marker);
                 });
-
 //                kakao.maps.event.addListener(marker, 'mouseout', function() { //마우스 떼면 없어지도록 함
 //                    infoWindow.close();
 //                });
             })(marker, infoWindow);
         }
 
-        marker.setMap(map); //marker가 지도 위에 표시되도록 설정
+        
 
     </script>
 </body>

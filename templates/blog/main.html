@@ -19,7 +19,7 @@
         <div class="card">
             <div class="card-info">
             {% for name_ in person.profile%}
-                {% if name_.username==blog.author %}
+                {% if name_.username.eqaul(blog.author) %}
                     {%if name_.profile_photo%}
                         <img class="Id_Profile" style="border-radius:50px;" src={{name_.profile_photo.url}}>
                     {%else%}

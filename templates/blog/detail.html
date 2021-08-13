@@ -68,7 +68,7 @@
         <div class="comment">
         <!--작성된 댓글 넣을 공간-->
           {% for comment in comments %}
-          {{user.username}} : {{comment.body}} - {{comment.date|date:'m-d h:i' }}
+          {{comment.body}} - {{comment.date|date:'m-d h:i' }}
           <br>
         {% endfor %}
           </div>
@@ -76,7 +76,7 @@
           <form method="POST">
             <div class="comment-input">
               {% csrf_token %}
-              <input name="body" type="text" value="댓글 작성">
+              <input name="body" type="text" placeholder="댓글 작성">
               <input class="submit-btn" type="submit" value="게시">
             </div>
           </form>      

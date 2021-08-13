@@ -110,6 +110,8 @@ def create(request):
     post_blog.images = request.FILES['images']
     post_blog.author = request.user #여기도 수정
     post_blog.weather = request.POST.getlist('weather[]')
+    post_blog.latitude = float(request.POST['latitude'])
+    post_blog.longitude = float(request.POST['longitude'])
     post_blog.save()
     return redirect('main')
 # if request.method == 'POST':

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from firstapp.views import main, detail, credit, main_map, signup, login, new, create, search, post, profile, modify, edit, update, delete, post_like
+from firstapp.views import main, detail, credit, main_map, signup, login, new, create, search, post, profile, modify, edit, delete, post_like
 from firstapp.views import test, loading
 from django.conf import settings
 from django.conf.urls.static import static
@@ -37,7 +37,6 @@ urlpatterns = [
     path('profile/<str:username>', profile, name='profile'),
     path('modify/', modify, name='modify'),
     path('edit/<str:id>', edit, name='edit'),
-    path('update/<str:id>', update, name='update'),
     path('delete/<str:id>', delete, name='delete'),
     path('like/<int:id>', post_like, name='post_like'),
     path('test/', test, name='test'),

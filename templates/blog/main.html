@@ -18,10 +18,21 @@
     {% for blog in blogs %}    
         <div class="card">
             <div class="card-info">
-                {%if person.profile.profile_photo%}
-                    <img class="Id_Profile" style="border-radius:50px;" src={{person.profile.profile_photo.url}}>
-                {%else%}
-                    <img class="Id_Profile" src="https://image.flaticon.com/icons/png/512/149/149071.png">
+                {%if blog.author == user %}
+                    {%if person.profile.profile_photo %}
+                     <img class="Id_Profile" style="border-radius:50px;" src={{person.profile.profile_photo.url}}>
+                    {%else%}
+                     <img class="Id_Profile" src="https://image.flaticon.com/icons/png/512/149/149071.png">
+                    {%endif%}
+                {%else %}
+                    {% for peo in people %}
+                        {%if blog.author == peo%}
+                            {%if peo.profile.profile_photo %}
+                                <img class="Id_Profile" style="border-radius:50px;" src={{peo.profile.profile_photo.url}}>
+                            {%endif%}
+                        {%else%}
+                        {%endif%}
+                    {% endfor %}
                 {%endif%}
                 
                 <p class="Id">{{ blog.author }}</p>

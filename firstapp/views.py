@@ -153,4 +153,3 @@ def post_like(request, id):
         blog.likes.add(user)
 
     return redirect('/detail/'+str(id))
-

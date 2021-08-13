@@ -41,7 +41,7 @@ urlpatterns = [
     path('delete/<str:id>', delete, name='delete'),
     path('like/<int:id>', post_like, name='post_like'),
     path('test/', test, name='test'),
-    path('comment/<int:blog_id>', comment, name='comment'),
+    path('comment/<int:id>', comment, name='comment'),
     path('loading/', loading, name='loading'),
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

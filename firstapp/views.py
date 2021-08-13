@@ -158,4 +158,4 @@ def comment(request,blog_id):
 
         return redirect('/detail/'+str(blog_id))
     else:
-        return redirect('/blog/'+str(blog_id))
+        return redirect('/detail/'+str(blog_id))

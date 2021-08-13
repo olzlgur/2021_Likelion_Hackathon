@@ -101,6 +101,7 @@ p{
 
 .main-comment{
   position: absolute;
+  width:400px;
   top: 540px;
   left: 350px;
 }

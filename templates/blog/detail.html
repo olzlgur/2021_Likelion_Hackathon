@@ -52,7 +52,7 @@
           <p>{{blog.body}}</p>              <!--본문-->               
         </div>  
       </div>
-      <div class="card2">
+      <div style="width:400px;" class="card2">
         <div class="weather-picture">
           {% if blog.weather == "['rainy']" %}
                 <img class="weather" src='https://image.flaticon.com/icons/png/512/826/826957.png'>
@@ -72,7 +72,7 @@
           {% for comment in comments %}
           {{comment.body}} - {{comment.date|date:'m-d h:i' }}
           <br>
-        {% endfor %}
+          {% endfor %}
           </div>
           
           <form method="POST">

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from firstapp.views import main, detail, credit, main_map, signup, login, new, create, search, post, profile, modify, edit, update, delete, post_like, comment
+from firstapp.views import main, detail, credit, main_map, signup, login, new, create, search, post, profile, modify, edit, update, delete, post_like
 from firstapp.views import test, loading
 from django.conf import settings
 from django.conf.urls.static import static
@@ -41,7 +41,7 @@ urlpatterns = [
     path('delete/<str:id>', delete, name='delete'),
     path('like/<int:id>', post_like, name='post_like'),
     path('test/', test, name='test'),
-    path('comment/<int:id>', comment, name='comment'),
+
     path('loading/', loading, name='loading'),
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

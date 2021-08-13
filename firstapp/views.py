@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.views.generic.detail import DetailView
 from .models import Blog, Comment
 from django.contrib.auth import get_user_model
-from .forms import Blog_form, CustomUserChangeForm, ProfileForm
+from .forms import CustomUserChangeForm, ProfileForm
 from .models import Profile
 
 # Create your views here.
@@ -18,8 +18,7 @@ def loading(request):
 def main(request):
     blogs = Blog.objects.all()
     person = get_object_or_404(get_user_model(), username=request.user)
-    people = get_user_model().objects.all()
-    return render(request, 'blog/main.html', {'blogs':blogs, 'person':person, 'people':people})
+    return render(request, 'blog/main.html', {'blogs':blogs, 'person':person})
 
 def signup(request):
     return render(request, 'blog/signup.html')
@@ -47,7 +46,6 @@ def detail(request, id):
 
 def profile(request, username):
     person = get_object_or_404(get_user_model(), username=username)
-    person.profile_photo = "https://image.flaticon.com/icons/png/512/149/149071.png"
     return render(request, 'blog/profile.html', {'person':person}) 
 
 def modify(request):
@@ -82,14 +80,12 @@ def credit(request):
 
 def main_map(request):
     blogss = Blog.objects.all()
-    #personss = Profile.objects.all()
-    people = get_user_model().objects.all()
-    person = get_object_or_404(get_user_model(), username=request.user)
+    personss = Profile.objects.all()
+    personsss = get_object_or_404(get_user_model(), username=request.user)
     context = {
         'blogss': blogss,
-    #    'personss': personss,
-        'person': person,
-        'people': people
+        'personss': personss,
+        'personsss': personsss
     }
     return render(request, 'blog/map.html', context)
 
@@ -105,15 +101,12 @@ def post(request):
 
 def create(request):
     post_blog = Blog()
-    person = get_object_or_404(get_user_model(), username=request.user)
     post_blog.body = request.POST['body']
     post_blog.hashtag = request.POST['hashtag']
     post_blog.created_at = timezone.now()
     post_blog.images = request.FILES['images']
     post_blog.author = request.user #여기도 수정
     post_blog.weather = request.POST.getlist('weather[]')
-    post_blog.latitude = float(request.POST['latitude'])
-    post_blog.longitude = float(request.POST['longitude'])
     post_blog.save()
     return redirect('main')
 # if request.method == 'POST':
@@ -127,9 +120,12 @@ def search(request):
         blog_list = blog_list.filter(hashtag__icontains=search_key) # 해당 검색어를 포함한 queryset 가져오기
     return render(request, 'blog/search.html', {'blog_list':blog_list, 'person':person})
 
+
+
 def edit(request, id):
     edit_blog = Blog.objects.get(id= id)
     return render(request, 'blog/edit.html', {'blog':edit_blog})
+
 
 def update(request, id):
     update_blog = Blog.objects.get(id= id)
@@ -141,10 +137,11 @@ def update(request, id):
     update_blog.save()
     return redirect('detail', update_blog.id)
 
+
 def delete(request, id):
     delete_blog = Blog.objects.get(id= id)
     delete_blog.delete()
-    return redirect('main' + +str(id))    
+    return redirect('main')    
 
 def post_like(request, id):
     blog = get_object_or_404(Blog, pk=id)

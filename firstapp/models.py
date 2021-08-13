@@ -17,9 +17,6 @@ class Blog(models.Model):
     body = models.TextField(max_length=200) #글 본문
     likes = models.ManyToManyField(User, through='Like', through_fields=('blog', 'user'), related_name='likes')
     
-    def delete(request, self, *args, **kwargs):
-        self.images.delete()
-    
     def __str__(self):
         return str(self.latitude) + ", " + str(self.longitude) #일단 위도, 경도 표시하도록 해놓음 ->편의에 따라 바꿔도 ㄱㅊ
 

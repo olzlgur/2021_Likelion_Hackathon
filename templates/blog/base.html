@@ -17,13 +17,15 @@
 </head>
 <body>
     <div class="nav-wrapper">
+        <div class="blank_left"></div>  <!-- 가상 공간 -->
         <div class="logo">
               <a href="{% url 'main' %}"> <img src="../../static/css/logo_back.PNG" width="240" height="100"></a>
         </div>
+        <div class="blank_right"></div> <!-- 가상 공간 -->
         <div class="nav">
             <!-- navbar -->
              {% if user.is_authenticated %}
-                <p class="hi">안녕하세요, {{user.username}}님!</p>
+                <p class="hi">안녕하세요, {{user.username}}님! </p>
                 <li><a href="{% url 'credit' %}"><img class="nav-credit" src="https://image.flaticon.com/icons/png/512/174/174188.png"></a></li>
                 {% if person.profile.profile_photo.url %}
                 <li><a href="{% url 'profile' user.username %}"><img class="nav-profile" style="border-radius:50px;" src={{person.profile.profile_photo.url}}></a></li>
@@ -36,7 +38,7 @@
                 </form>
                 
             {% else %}
-                <a class="nav-item-link" href="{% url 'signup' %}" style="margin-left:600px;">Signup</a>
+                <a class="nav-item-link" href="{% url 'signup' %}" style="margin-left:280px;">Signup</a>
                 <a class="nav-item-link" href="{% url 'login' %}" style="margin-left:10px;">Login</a>
             {% endif %}
         </div>   

@@ -1,7 +1,8 @@
 *{
     margin: 0;
     padding: 0;
-} 
+}
+
 .title{
     font-family: 'Rancho', cursive;
   }
@@ -16,8 +17,7 @@ html{
     font-family: 'Nanum-Gothic';
     font-size:25px;
     margin-top: 15px;
-    margin-left: 400px;
-    margin-right: 20px;
+    margin-right: 40px;
 }
 
 .nav-wrapper{
@@ -54,6 +54,7 @@ html{
     width:70px;
     height: 30px;
     margin-top: 15px;
+    margin-right: 20px;
     background-color:rgba(26,6,255, 0.54);
     color: aliceblue;
     font-family: 'Roboto';
@@ -66,21 +67,28 @@ html{
 .nav-profile{
     width: 50px;
     height: 50px;
-    margin-right: 20px;
+    margin-right: 25px;
 }
 
 .nav-credit{
     width: 50px;
     height: 50px;
     margin-top: 2px;
-    margin-right: 20px;
+    margin-right: 25px;
 }
 
 .nav-wrapper .logo {        /* 상단바 로고 */
     position: flex;
     float: center;
-    margin-left: 43%;
     padding: 15px 0 20px 30px;
+}
+
+.blank_left {  /* 가상 공간 */
+    width: 44%;
+}
+
+.blank_right {
+    width: 10%;
 }
 
 .nav li{
@@ -123,6 +131,5 @@ html{
     position: absolute;
     left: 18px;
 }
-
 
 input::-webkit-input-placeholder { color: #f00; }

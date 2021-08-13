@@ -13,6 +13,7 @@
               <img src="https://image.flaticon.com/icons/png/512/149/149071.png"> <!--프로필 사진-->
             </div>
             <h2 class="card-writer">{{ blog.author }}</h2> <!--작성자 이름-->
+            <a class ="map" href="{% url 'main_map' %}"><img style="width:30px" src="https://image.flaticon.com/icons/png/512/854/854853.png"></a>
           </div>
 
             {% if user == blog.author %}
@@ -24,7 +25,6 @@
           </div>                                <!--main 이미지-->
         </div>
         
-        <a class ="map" href="{% url 'main_map' %}">맵 페이지 임시 버튼</a>
         <div class="Like"><a href = "{% url 'post_like' blog.id %}">{{message}}</a>
           {{blog.likes.count}}명이 좋아합니다!</div>
         <div class="sub-comment">

@@ -82,12 +82,14 @@ def credit(request):
 
 def main_map(request):
     blogss = Blog.objects.all()
-    personss = Profile.objects.all()
-    personsss = get_object_or_404(get_user_model(), username=request.user)
+    #personss = Profile.objects.all()
+    people = get_user_model().objects.all()
+    person = get_object_or_404(get_user_model(), username=request.user)
     context = {
         'blogss': blogss,
-        'personss': personss,
-        'personsss': personsss
+    #    'personss': personss,
+        'person': person,
+        'people': people
     }
     return render(request, 'blog/map.html', context)
 
@@ -110,6 +112,8 @@ def create(request):
     post_blog.images = request.FILES['images']
     post_blog.author = request.user #여기도 수정
     post_blog.weather = request.POST.getlist('weather[]')
+    post_blog.latitude = float(request.POST['latitude'])
+    post_blog.longitude = float(request.POST['longitude'])
     post_blog.save()
     return redirect('main')
 # if request.method == 'POST':

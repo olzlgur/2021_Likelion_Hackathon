@@ -83,12 +83,12 @@
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b50f777e80931e3ecceb48757ca6e4bf&libraries=services,clusterer,drawing"></script>
     <script>
         var container = document.getElementById('map'); //지도를 담을 영역의 reference
-        var options = {
-            center: new kakao.maps.LatLng(35.889733, 128.610047), //지도의 option을 설정 // 35.-,128.- 는 좌표 정보
-            level: 4
-        };
+        //var options = {
+        //    center: new kakao.maps.LatLng(35.889733, 128.610047), //지도의 option을 설정 // 35.-,128.- 는 좌표 정보
+        //    level: 4
+        //};
 
-        var map = new kakao.maps.Map(container, options);
+        //var map = new kakao.maps.Map(container, options);
 
         if (navigator.geolocation) {
     
@@ -97,21 +97,34 @@
         
                 var lat = position.coords.latitude, // 위도
                     lon = position.coords.longitude; // 경도
-        
+
+                var options = {
+                    center: new kakao.maps.LatLng(lat, lon),
+                    level: 4
+                }
+                var map = new kakao.maps.Map(container, options);
+
+
                 var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-                    message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
+                    message = '<div style="padding:5px;">현위치</div>'; // 인포윈도우에 표시될 내용입니다
         
-                // 마커와 인포윈도우를 표시합니다
+                // 마커와 인포윈도우 표시
                 displayMarker(locPosition, message);
             
             });
-    
-        } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-    
-            var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),    
-                message = 'geolocation을 사용할수 없어요..'
+
+        } else { //GeoLocation 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용 설정
+
+                var options = {
+                    center: new kakao.maps.LatLng(35.889733, 128.610047),
+                    level: 4
+                }
+                var map = new kakao.maps.Map(container, options);
+
+                var locPosition = new kakao.maps.LatLng(35.889733, 128.610047),    
+                    message = 'geolocation을 사용할수 없습니다.'
         
-            displayMarker(locPosition, message);
+                displayMarker(locPosition, message);
         }
 
 

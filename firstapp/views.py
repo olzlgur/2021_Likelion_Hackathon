@@ -124,18 +124,18 @@ def search(request):
     return render(request, 'blog/search.html', {'blog_list':blog_list, 'person':person})
 
 def edit(request, id):
-    post = Blog.objects.get(id=id)
-    if request.method == 'POST':
-        blog_form = Blog_form(request.POST, request.FILES)
-        if blog_form.is_valid():
-            print(blog_form.cleaned_data)
-            post.author = blog_form.cleaned_data['name']
-            post.images = blog_form.cleaned_data['images']
-            post.save()
-            return redirect('profile', id)
-        return redirect('profile', id)
-    else:
-        return redirect('edit', id)
+    edit_blog = Blog.objects.get(id= id)
+    return render(request, 'blog/edit.html', {'blog':edit_blog})
+
+def update(request, id):
+    update_blog = Blog.objects.get(id= id)
+    update_blog.body = request.POST['body']
+    update_blog.hashtag = request.POST['hashtag']
+    update_blog.weather = request.POST.getlist('weather[]')
+    update_blog.author = request.user
+    update_blog.created_at = timezone.now()
+    update_blog.save()
+    return redirect('detail', update_blog.id)
 
 def delete(request, id):
     delete_blog = Blog.objects.get(id= id)

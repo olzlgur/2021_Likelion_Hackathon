@@ -25,7 +25,7 @@
         <div class="nav">
             <!-- navbar -->
              {% if user.is_authenticated %}
-                <p class="hi">안녕하세요, {{user.username}}님! </p>
+                <p class="hi">Hello, {{user.username}}! </p>
                 <li><a href="{% url 'credit' %}"><img class="nav-credit" src="https://image.flaticon.com/icons/png/512/174/174188.png"></a></li>
                 {% if person.profile.profile_photo %}
                 <li><a href="{% url 'profile' user.username %}"><img class="nav-profile" style="border-radius:50px;" src={{person.profile.profile_photo.url}}></a></li>

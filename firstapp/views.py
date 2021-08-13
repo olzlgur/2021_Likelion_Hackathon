@@ -37,7 +37,9 @@ def detail(request, id):
             comment.date = timezone.now()
             comment.save()
             message2 = request.user.id
-    
+    else:
+        message2="noname"
+
     if blog.likes.filter(id=request.user.id):
         message="취소"
     else:

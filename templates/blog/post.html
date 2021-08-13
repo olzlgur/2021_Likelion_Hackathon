@@ -32,7 +32,6 @@
                 <input type="datetime-local"/>
             </div>
         </div>
-
     
         <div class="body3">
             <div class="photo-wrapper">
@@ -57,19 +56,33 @@
                 
             </div>
         </div>  
-
+        <!--<div id="latitude" name="latitude" style="display:none"></div>
+        <div id="longitude" name="longitude" style="display:none"></div>-->
         <div class="body6">
-            <script>
+            <script type="text/javascript">
+                //form.latitude.value = 0.0;
+                //form.longitude.value = 0.0;
+                //document.getElementById("latitude").innerHTML = parseFloat(0.0);
+                //document.getElementById("longitude").innerHTML = parseFloat(0.0);
+                
+
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(function(position) {
         
                         var lat = position.coords.latitude, // 위도
                             lon = position.coords.longitude; // 경도
                         
-                        var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+                        //var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+                        document.getElementById("latitude").value = lat;
+                        document.getElementById("longitude").value = lon;
                     });
+                } else {
+                    document.getElementById('latitude').value = 0.0;
+                    document.getElementById('longitude').value = 0.0;
                 }
             </script>
+        <input type="hidden" name="latitude" id="latitude" value="">
+        <input type="hidden" name="longitude" id="longitude" value="">
         </div>
         <button type="submit" class ="submit"> submit</button>
     </form>

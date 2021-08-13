@@ -9,7 +9,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 class Blog(models.Model):
     latitude = models.FloatField(default=0.0) #위도
     longitude = models.FloatField(default=0.0) #경도
-    hashtag = models.TextField(max_length=20) #해시태그는 하나만 적을 수 있도록 하는 게 편할듯
+    hashtag = models.TextField(max_length=20) 
     weather = models.TextField() #4개로 구분 - cloudy, sunny, rainy, wind
     images = models.ImageField(upload_to ="images", blank = True, null = True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE )#작성자 여기 수정
@@ -39,7 +39,7 @@ class Like(models.Model):
 
 class CommentUpdate(UpdateView):
     model = Comment
-    fields = [ 'text']
+    fields = ['text']
     template_name_suffix = '_update'
     # success_url = '/'
 

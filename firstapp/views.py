@@ -29,6 +29,7 @@ def siteMain(request):
 def detail(request, id):
     blog = get_object_or_404(Blog, pk = id)
     person = get_object_or_404(get_user_model(), username=request.user)
+    comments = Comment.objects.all().filter(post = detail)
     
     if blog.likes.filter(id=request.user.id):
         message="취소"

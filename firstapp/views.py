@@ -20,7 +20,7 @@ def main(request):
     person = get_object_or_404(get_user_model(), username=request.user)
     people = get_user_model().objects.all()
     return render(request, 'blog/main.html', {'blogs':blogs, 'person':person, 'people':people})
-    
+
 def signup(request):
     return render(request, 'blog/signup.html')
 
@@ -81,12 +81,14 @@ def credit(request):
 
 def main_map(request):
     blogss = Blog.objects.all()
-    personss = Profile.objects.all()
-    personsss = get_object_or_404(get_user_model(), username=request.user)
+    #personss = Profile.objects.all()
+    people = get_user_model().objects.all()
+    person = get_object_or_404(get_user_model(), username=request.user)
     context = {
         'blogss': blogss,
-        'personss': personss,
-        'personsss': personsss
+    #    'personss': personss,
+        'person': person,
+        'people': people
     }
     return render(request, 'blog/map.html', context)
 

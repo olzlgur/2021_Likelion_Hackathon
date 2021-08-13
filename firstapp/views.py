@@ -32,6 +32,7 @@ def detail(request, id):
     comments = Comment.objects.filter(post = id)
     if request.method == "POST":
             comment = Comment()
+            comment.writer=  request.user
             comment.post = blog
             comment.body = request.POST['body']
             comment.date = timezone.now()

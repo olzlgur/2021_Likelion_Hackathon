@@ -10,7 +10,22 @@
         <div class="card-body">
           <div class="card-header">
             <div class="profile-picture">
-              <img src="https://image.flaticon.com/icons/png/512/149/149071.png"> <!--프로필 사진-->
+             {%if blog.author == user %}
+                    {%if person.profile.profile_photo %}
+                     <img style="border-radius:50px;" src={{person.profile.profile_photo.url}}>
+                    {%else%}
+                     <img src="https://image.flaticon.com/icons/png/512/149/149071.png">
+                    {%endif%}
+                {%else %}
+                    {% for peo in people %}
+                        {%if blog.author == peo%}
+                            {%if peo.profile.profile_photo %}
+                                <img class="Id_Profile" style="border-radius:50px;" src={{peo.profile.profile_photo.url}}>
+                            {%endif%}
+                        {%else%}
+                        {%endif%}
+                    {% endfor %}
+                {%endif%} <!--프로필 사진-->
             </div>
             <h2 class="card-writer">{{ blog.author }}</h2> <!--작성자 이름-->
             <a class ="map" href="{% url 'main_map' %}"><img style="width:30px" src="https://image.flaticon.com/icons/png/512/854/854853.png"></a>

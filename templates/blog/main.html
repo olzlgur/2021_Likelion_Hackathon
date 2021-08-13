@@ -18,14 +18,16 @@
     {% for blog in blogs %}    
         <div class="card">
             <div class="card-info">
-                {%if person.profile.profile_photo%}
-                    <img class="Id_Profile" style="border-radius:50px;" src={{person.profile.profile_photo.url}}>
-                {%else%}
-                    <img class="Id_Profile" src="https://image.flaticon.com/icons/png/512/149/149071.png">
+            {% for name_ in person.profile%}
+                {% if name_.username==blog.author %}
+                    {%if name_.profile_photo%}
+                        <img class="Id_Profile" style="border-radius:50px;" src={{name_.profile_photo.url}}>
+                    {%else%}
+                        <img class="Id_Profile" src="https://image.flaticon.com/icons/png/512/149/149071.png">
+                    {%endif%}
                 {%endif%}
-                
                 <p class="Id">{{ blog.author }}</p>
-                
+           {% endfor %}     
                 
                 {% if blog.weather == "['rainy']" %}
                 <img class="weather" src='https://image.flaticon.com/icons/png/512/826/826957.png'>

@@ -63,6 +63,26 @@
             {% endif %}
         {%endfor%}
     </div> -->
+    <div id="photo_src" style=""> <!--프사 url 저장-->
+    {%for blog in blogss%}
+        {%if blog.author == user %}
+            {%if person.profile.profile_photo %}
+                {{person.profile.profile_photo.url}},
+            {%else%}
+                "https://image.flaticon.com/icons/png/512/149/149071.png",
+            {%endif%}
+        {%else %}
+            {% for peo in people %}
+                {%if blog.author == peo%}
+                    {%if peo.profile.profile_photo %}
+                        {{peo.profile.profile_photo.url}},
+                    {%endif%}
+                {%else%}
+                {%endif%}
+            {% endfor %}
+        {%endif%}
+    {% endfor %}
+    </div>
     <div id="wth_png" style="display:none">
         {% for blog in blogss %}
             {% if blog.weather == "['rainy']" %}
@@ -108,7 +128,7 @@
         var list_ath = document.getElementById("ath").innerText.split(',');
         var list_crt = document.getElementById("crt").innerText.split(',');
         var list_bdy = document.getElementById("bdy").innerText.split(',');
-        //var list_photo = document.getElementById("photo").innerText.split(',');
+        var list_photo = document.getElementById("photo_src").innerText.split(',');
 
         var coordinates = new Array(); //좌표 정보 저장할 배열
 
@@ -130,7 +150,7 @@
             var iwContent = '<div style="width:200px;height:250px;">'
             + '<div>'
             + '<div style="float:left;">'
-            + '<img style="width:15px; height:15px; margin-left:5px;" src="https://image.flaticon.com/icons/png/512/149/149071.png">'
+            + '<img style="width:15px; height:15px; margin-left:5px;" src='+ list_photo[idx] +'>'
             + '</div>'  
             + '<div style="width:135px;margin-left:5px;font-size:20px;float:left;font-family:Rancho,Arial; overflow:hidden;">'
             + list_ath[idx]

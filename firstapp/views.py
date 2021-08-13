@@ -83,12 +83,13 @@ def credit(request):
 def main_map(request):
     blogss = Blog.objects.all()
     #personss = Profile.objects.all()
-     
+    people = get_user_model().objects.all()
     person = get_object_or_404(get_user_model(), username=request.user)
     context = {
         'blogss': blogss,
     #    'personss': personss,
-        'person': person
+        'person': person,
+        'people': people
     }
     return render(request, 'blog/map.html', context)
 

@@ -5,7 +5,7 @@
     <form action="{%url 'create'%}" method="post" enctype="multipart/form-data">
         {%csrf_token%}
         <div class="body">
-            <div class="weather-wrapper">
+            <div class="weather-wrapper" style="margin:0 auto;">
                 <btn class="btn_weather">날씨 선택</btn>
                 <script type="text/javascript">
                 function checkOnlyOne(element) {
@@ -27,50 +27,44 @@
             </div>
         </div>
         <div class="body2">
-            <div class="time-wrapper">
+            <div class="time-wrapper" style="margin:0 auto;">
                 <btn class="btn_time">시간 선택</btn>
                 <input type="datetime-local"/>
             </div>
         </div>
     
         <div class="body3">
-            <div class="photo-wrapper">
+            <div class="photo-wrapper" style="margin:0 auto;">
                 <btn class="btn_photo">사진 선택</btn>
                 <input type="file" name = "images">
                 <!-- <input type="file" name="images" accept="image/*" onchange="setThumbnail(event);"/>    -->
             </div>
         </div>
-
         
         <div class="body4">
-            <div class="hashtag-wrapper">
-                <div 
+            <div class="hashtag-wrapper" style="margin:0 auto;">
                 <btn class="btn_hashtag">해시태그</btn>
-                <textarea name="hashtag" rows="5" cols="50"></textarea>
+                <textarea name="hashtag" rows="5" cols="50" style="color:gray;"></textarea>
+                <p style="color:gray; margin-left:10px; font-size:15px;">여러분의 현재 위치를 적어주세요!<br>ex) #경북대학교 #대현동</p>
             </div>
         </div>
         <div class="body5">
-            <div class="desc-wrapper">
+            <div class="btn-wrapper" style="display:flex; margin:0 auto; width:1000px; padding: 20px; margin-top:20px; background-color:white; border-radius:10px;">
                 <btn class="btn_desc" style="height: 35px; margin-top: 60px;">내용 입력</btn>
-                
                 <textarea name="body" rows="10" cols="50"></textarea>
-                
             </div>
         </div>
+        
         <div class="body6" style="display:none;">
-            <div class="hashtag-wrapper">
+            <div>
                 <btn class="btn_desc" style="height: 35px; margin-top: 60px;">위도 입력</btn>
-                
                 <textarea name="latitude" id="latitude" rows="1" cols="50"></textarea>
-                
             </div>
         </div>    
         <div class="body7" style="display:none;">
-            <div class="hashtag-wrapper">
+            <div>
                 <btn class="btn_desc" style="display:none; height: 35px; margin-top: 60px;">경도 입력</btn>
-                
                 <textarea name="longitude" id="longitude" rows="1" cols="50"></textarea>
-                
             </div>
         </div>    
         <!--<div id="latitude" name="latitude" style="display:none"></div>

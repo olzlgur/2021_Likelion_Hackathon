@@ -18,7 +18,8 @@ def loading(request):
 def main(request):
     blogs = Blog.objects.all()
     person = get_object_or_404(get_user_model(), username=request.user)
-    return render(request, 'blog/main.html', {'blogs':blogs, 'person':person})
+    people = get_user_model().objects.all()
+    return render(request, 'blog/main.html', {'blogs':blogs, 'person':person, 'people':people})
 
 def signup(request):
     return render(request, 'blog/signup.html')
@@ -46,6 +47,7 @@ def detail(request, id):
 
 def profile(request, username):
     person = get_object_or_404(get_user_model(), username=username)
+    person.profile_photo = "https://image.flaticon.com/icons/png/512/149/149071.png"
     return render(request, 'blog/profile.html', {'person':person}) 
 
 def modify(request):
@@ -101,6 +103,7 @@ def post(request):
 
 def create(request):
     post_blog = Blog()
+    person = get_object_or_404(get_user_model(), username=request.user)
     post_blog.body = request.POST['body']
     post_blog.hashtag = request.POST['hashtag']
     post_blog.created_at = timezone.now()

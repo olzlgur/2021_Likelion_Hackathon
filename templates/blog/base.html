@@ -30,7 +30,7 @@
                 {% if person.profile.profile_photo %}
                 <li><a href="{% url 'profile' user.username %}"><img class="nav-profile" style="border-radius:50px;" src={{person.profile.profile_photo.url}}></a></li>
                 {% else %}
-                <li><a href="{% url 'profile' user.username %}"><img class="nav-profile" src="https://image.flaticon.com/icons/png/512/149/149071.png"></a></li>
+                <li><a href="{% url 'profile' user.username %}"><img class="nav-profile" src="{% static 'profile/123.png' %}"></a></li>
                 {% endif %}
                 <a class="nav-item-link" href="javascript:{document.getElementById('logout').submit()}" style="font-family:Nanum Gothic;">Logout</a>
                 <form id="logout" method="POST" action="{% url 'logout' %}">

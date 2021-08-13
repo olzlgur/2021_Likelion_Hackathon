@@ -53,7 +53,7 @@
         <div class="comment">
         <!--작성된 댓글 넣을 공간-->
           {% for comment in comments %}
-          {{user.username}} : {{comment.body}} - {{comment.date|date:'m-d h:i' }}
+          {{message2}} : {{comment.body}} - {{comment.date|date:'m-d h:i' }}
           <br>
         {% endfor %}
           </div>

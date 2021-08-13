@@ -36,13 +36,14 @@ def detail(request, id):
             comment.body = request.POST['body']
             comment.date = timezone.now()
             comment.save()
+            message2 = request.user
     
     if blog.likes.filter(id=request.user.id):
         message="취소"
     else:
         message="좋아요"
 
-    return render(request, 'blog/detail.html', {'blog' :blog, 'comments' : comments, 'person':person, "message" : message})
+    return render(request, 'blog/detail.html', {'blog' :blog, 'comments' : comments, 'person':person, "message" : message, "message2": message2})
 
 def profile(request, username):
     person = get_object_or_404(get_user_model(), username=username)

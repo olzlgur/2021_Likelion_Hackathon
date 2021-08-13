@@ -16,7 +16,6 @@ class Blog(models.Model):
     #pub_date = models.DateTimeField('data published')
     body = models.TextField(max_length=200) #글 본문
     likes = models.ManyToManyField(User, through='Like', through_fields=('blog', 'user'), related_name='likes')
-    profile_image = models.ImageField(upload_to ="images", blank = True)
     
     def delete(request, self, *args, **kwargs):
         self.images.delete()

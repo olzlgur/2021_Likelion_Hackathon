@@ -144,7 +144,7 @@ def update(request, id):
 def delete(request, id):
     delete_blog = Blog.objects.get(id= id)
     delete_blog.delete()
-    return redirect('main')    
+    return redirect('main' + +str(id))    
 
 def post_like(request, id):
     blog = get_object_or_404(Blog, pk=id)

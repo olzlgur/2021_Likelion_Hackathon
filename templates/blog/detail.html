@@ -67,7 +67,7 @@
                 <img class="weather" src='https://image.flaticon.com/icons/png/512/1146/1146869.png'>
                 {% endif %}
         </div>
-        <div class="comment">
+        <div class="comment" style=" overflow:hidden; ">
         <!--작성된 댓글 넣을 공간-->
           {% for comment in comments %}
           {{comment.body}} - {{comment.date|date:'m-d h:i' }}

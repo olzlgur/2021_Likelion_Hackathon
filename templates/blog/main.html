@@ -11,8 +11,9 @@
         </div>
         
     <!--여기까지가 검색창-->    
-
     </div>
+
+    <bdo dir="rtl">
     <div class="card-wrapper">
     {% for blog in blogs %}    
         <div class="card">
@@ -63,5 +64,6 @@
         </div>
     {% endfor %}
     </div>
+    </bdo>
     <a href="{% url 'post' %}"><img src="https://image.flaticon.com/icons/png/512/875/875068.png" id="fixedbutton"></a>
 {%endblock%}

@@ -17,6 +17,7 @@
     <div class="card-wrapper">
     {% for blog in blogs %}    
         <div class="card">
+            <bdo dir="ltr">
             <div class="card-info">
               {%if blog.author == user %}
                     {%if person.profile.profile_photo %}
@@ -62,6 +63,7 @@
                 <p class="desc" style="width:270px;height:50px;overflow:hidden;text-overflow:ellipsis;white-space:normal;line-height: 1.2;max-height:2.4em; text-align:left; word-wrap:break-word; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;">{{blog.body}}</p>
             </div>
         </div>
+        </bdo>
     {% endfor %}
     </div>
     </bdo>

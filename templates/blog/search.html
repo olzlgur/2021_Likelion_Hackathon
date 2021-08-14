@@ -16,17 +16,43 @@
             {% for blog in blog_list %}
             <div class="card">
                 <div class="card-info">
-                    <img class="Id_Profile" src="https://image.flaticon.com/icons/png/512/149/149071.png">
+                    {%if blog.author == user %}
+                        {%if person.profile.profile_photo %}
+                            <img class="Id_Profile" style="border-radius:50px;" src={{person.profile.profile_photo.url}}>
+                        {%else%}
+                            <img class="Id_Profile" src="https://image.flaticon.com/icons/png/512/149/149071.png">
+                        {%endif%}
+                    {%else %}
+                        {% for peo in people %}
+                            {%if blog.author == peo%}
+                                {%if peo.profile.profile_photo %}
+                                    <img class="Id_Profile" style="border-radius:50px;" src={{peo.profile.profile_photo.url}}>
+                                {%else%}
+                                    <img class="Id_Profile" src="https://image.flaticon.com/icons/png/512/149/149071.png">
+                            {%endif%}
+                        {%else%}
+                    {%endif%}
                     <p class="Id">{{ blog.author }}</p>
-                    <img class="weather" src="https://image.flaticon.com/icons/png/512/1146/1146869.png">
-                    <p class="clock">{{blog.created_at}}</p>
+                     {% if blog.weather == "['rainy']" %}
+                    <img class="weather" src='https://image.flaticon.com/icons/png/512/826/826957.png'>
+                    {% endif %}
+                    {% if blog.weather == "['sunny']" %}
+                    <img class="weather" src='https://image.flaticon.com/icons/png/512/869/869869.png'>
+                    {% endif %}
+                    {% if blog.weather == "['wind']" %}
+                    <img class="weather" src='https://image.flaticon.com/icons/png/512/4150/4150923.png'>
+                    {% endif %}
+                    {% if blog.weather == "['cloudy']" %}
+                    <img class="weather" src='https://image.flaticon.com/icons/png/512/1146/1146869.png'>
+                    {% endif %}
+                    <p class="clock">{{blog.created_at|date:'m-d h:i' }}</p>
                 </div>
                 <div class="card-banner">
                   <a href="{%url 'detail' blog.id%}"><img src="{{blog.images.url}}" alt=""></a>
                 </div>
                 <div class="card-body">
                     <p class="hastag">{{blog.hashtag}}</p>
-                    <p class="desc">{{blog.body}}</p>
+                    <p class="desc" style="width:270px;height:50px;overflow:hidden;text-overflow:ellipsis;white-space:normal;line-height: 1.2;max-height:2.4em; text-align:left; word-wrap:break-word; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;">{{blog.body}}</p>
                 </div>
             </div> 
          {% endfor %}

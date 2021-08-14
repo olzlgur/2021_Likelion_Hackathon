@@ -25,13 +25,16 @@
                     {%else %}
                         {% for peo in people %}
                             {%if blog.author == peo%}
-                                {%if peo.profile.profile_photo %}
-                                    <img class="Id_Profile" style="border-radius:50px;" src={{peo.profile.profile_photo.url}}>
-                                {%else%}
-                                    <img class="Id_Profile" src="https://image.flaticon.com/icons/png/512/149/149071.png">
+                                    {%if peo.profile.profile_photo %}
+                                        <img class="Id_Profile" style="border-radius:50px;" src={{peo.profile.profile_photo.url}}>
+                                    {%else%}
+                                        <img class="Id_Profile" src="https://image.flaticon.com/icons/png/512/149/149071.png">
+                                    {%endif%}
+                            {%else%}
                             {%endif%}
-                        {%else%}
+                        {% endfor %}
                     {%endif%}
+                
                     <p class="Id">{{ blog.author }}</p>
                      {% if blog.weather == "['rainy']" %}
                     <img class="weather" src='https://image.flaticon.com/icons/png/512/826/826957.png'>
